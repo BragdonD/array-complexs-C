@@ -75,11 +75,15 @@ bool getInt(int* val) {
  */
 void Menu() {
     printf("Menu :\n");
-    printf("1. Add complex numbers.\n");
-    printf("2. Sub complex numbers.\n");
-    printf("3. Mul complex numbers.\n");
-    printf("4. Div complex numbers.\n");
-    printf("5. Leave\n");
+    printf("1. Create a array of random number.\n");
+    printf("2. Insert a number inside the array at a given position.\n");
+    printf("3. Delete a element from the array at a given position.\n");
+    printf("4. Print the array.\n");
+    printf("5. Add complex numbers.\n");
+    printf("6. Sub complex numbers.\n");
+    printf("7. Mul complex numbers.\n");
+    printf("8. Div complex numbers.\n");
+    printf("9. Leave\n");
 }
 
 /**

@@ -19,9 +19,9 @@ bool insert_into_arr(array* arr, array_type elem, int i) {
         return false;
     }
 
-    for(int j=i; j<arr->length-1; j++) {
+    for(int j=arr->length; j>i; j--) {
         printf("%d\n", j);
-        tmp_arr[j+1] = tmp_arr[j];
+        tmp_arr[j] = tmp_arr[j-1];
     }
     tmp_arr[i] = elem;
     arr->arr = tmp_arr;
@@ -31,7 +31,7 @@ bool insert_into_arr(array* arr, array_type elem, int i) {
 
 bool delete_into_arr(array* arr, int i) {
     if(arr->length == 0) return false;
-    if(i < arr->length && i > 0) return false;
+    if(i > arr->length) return false;
 
     array_type* tmp = NULL;
     tmp = realloc(arr->arr, arr->length - 1);
@@ -53,6 +53,7 @@ int arr_lenght(array* arr) {
 bool empty_arr(array* arr) {
     if(arr->length == 0) return false;
     free(arr->arr);
+    arr->arr = NULL;
     arr->length = 0;
     return true;
 }
