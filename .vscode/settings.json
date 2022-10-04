@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "array.h": "c",
+        "stdbool.h": "c",
+        "stdio.h": "c"
+    }
+}
