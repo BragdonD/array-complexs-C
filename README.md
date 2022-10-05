@@ -4,7 +4,7 @@ This repository was made for an exercice in Data Structures courses at Ajou Univ
 
 ## Folder-organisation
 
-In the inc folder you will find the header for each files In the src folder you will find the implementation of all the function. I divided the project in two part, the first part is about the complex numbers. The second part is about the user's interface.
+In the inc folder you will find the header for each files In the src folder you will find the implementation of all the function. I divided the project in three parts, the first part is about the complex numbers. The second part is the array structure. The third part is about the user's interface.
 
 ## How to use it
 
