@@ -1,3 +1,16 @@
+/**
+ * @file array.h
+ * @author Thomas DUCLOS
+ * @brief this is the header file for the array structure and the relatives functions.
+ * @note You need to change the typedef array_type each time you want to change the type of the array. 
+ * @note This structure is useful if you have a single type of data to put inside an array of this type.
+ * @note If you have multiple type of data you might want to split each type of array.
+ * @version 1.2
+ * @date 2022-10-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef ARRAY_H
 #define ARRAY_H
 

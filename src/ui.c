@@ -1,3 +1,11 @@
+/**
+ * @file ui.c
+ * @author Thomas DUCLOS
+ * @brief Source file for the ui header. In this source file you can find all the function relative to the interaction with the user.
+ * @version 1.2
+ * @date 2022-10-04
+ * @copyright Copyright (c) 2022
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -5,13 +13,10 @@
 #include <time.h>
 #include "ui.h"
 
-/**
- * @brief Retrieve an integer from a string by type checking the content of the string.
- * 
- * @param str the string containing the data to be parsed.
- * @param val the integer value that has been extract
- * @return true if success
- */
+/// @brief Retrieve an integer from a string by type checking the content of the string.
+/// @param str the string containing the data to be parsed.
+/// @param val the integer value that has been extract
+/// @return true if success
 bool parseInt(char *str, int* val){
     errno = 0;
     char *temp = NULL;
@@ -27,13 +32,10 @@ bool parseInt(char *str, int* val){
     return true;
 }
 
-/**
- * @brief Retrieve a double from a string by type checking the content of the string.
- * 
- * @param str the string containing the data to be parsed.
- * @param val the double value that has been extract
- * @return true if success
- */
+/// @brief Retrieve a double from a string by type checking the content of the string.
+/// @param str the string containing the data to be parsed.
+/// @param val the double value that has been extract
+/// @return true if success
 bool parseDouble(char *str, double* val) {
     errno = 0;
     char *temp = NULL;
@@ -45,34 +47,25 @@ bool parseDouble(char *str, double* val) {
     return true;
 }
 
-/**
- * @brief Get a double number with safe input methods
- * 
- * @param val the double value to be retrieve
- * @return true if success
- */
+/// @brief Get a double number with safe input methods
+/// @param val the double value to be retrieve
+/// @return true if success
 bool getDouble(double* val) {
     char buffer[500];
     fgets(buffer, 500, stdin); ///Safe way to get a string
     return parseDouble(buffer, val);
 }
 
-/**
- * @brief Get a integer number with safe input methods
- * 
- * @param val the integer value to be retrieve
- * @return true if success
- */
+/// @brief Get a integer number with safe input methods
+/// @param val the integer value to be retrieve
+/// @return true if success
 bool getInt(int* val) {
     char buffer[500];
     fgets(buffer, 500, stdin); ///Safe way to get a string
     return parseInt(buffer, val);
 }
 
-/**
- * @brief The user's menu
- * 
- */
+/// @brief The user's menu. This menu is only intend for this program.
 void Menu() {
     printf("Menu :\n");
     printf("1. Create a array of random number.\n");
@@ -86,11 +79,8 @@ void Menu() {
     printf("9. Leave\n");
 }
 
-/**
- * @brief Function to retrieve the choice made by user inside the menu
- * 
- * @return int 
- */
+/// @brief Function to retrieve the choice made by user inside the menu
+/// @return the user's choice
 int Choice() {
     int choice = 0;
 
@@ -101,8 +91,29 @@ int Choice() {
     return -1; ///Error to handle.
 }
 
+/// @brief Function to get a random double number
+/// @param low the upper boundary of the interval of generation
+/// @param high the lower boundary of the interval of generation
+/// @return the random number generated
 double random_Double( double low, double high )
 {
     return ( (double)rand() * ( high - low ) ) / (double)RAND_MAX + low;
 }
 
+/// @brief Function to print an operation of complex numbers
+/// @param val1 the first complex value
+/// @param val2 the second complex value
+/// @param operation the symbol of the operation
+/// @param result the complex result of the operation
+void print_operation(complex val1, complex val2, char operation, complex result) {
+    printf("( ");
+    print_Complex(val1);
+    printf(" )");
+    printf(" %c ", operation);
+    printf("( ");
+    print_Complex(val2);
+    printf(" )");
+    printf(" = ");
+    print_Complex(result);
+    printf("\n");
+}
