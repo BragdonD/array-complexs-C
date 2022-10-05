@@ -14,4 +14,5 @@ In the program, you will be able to use multiple commands. They will be presente
 
 ## Warning
 
+The realloc failed is considerated as a irrevocable. So if it happens the memory will be free and the program will be exited.
 Please do not create the bin and obj folder. They will be created by the makefile. Plus do not touch to the created files inside those two folders.
