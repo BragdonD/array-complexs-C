@@ -18,6 +18,11 @@ int create_Complex_Array (array *array, int length);
 /// The array is a dynamic array, you can add and remove       ///
 /// elements from it.                                          ///
 ///                                                            ///
+/// Notes:                                                     ///
+/// I decided to handle the failed on realloc as irrevocable.  ///
+/// So if realloc failed the memory will be free and the       ///
+/// program will exit.                                         ///
+///                                                            ///
 //////////////////////////////////////////////////////////////////
 
 int main(int argc, char const *argv[])
@@ -33,9 +38,12 @@ int main(int argc, char const *argv[])
     srand(time(NULL)); 
 
     do {
+start:
         Menu();
-        if( ( choice = Choice() ) == -1) // Check if the choice was sucessfull
-            return EXIT_FAILURE;
+        if( ( choice = Choice() ) == -1) { // Check if the choice was sucessfull 
+            printf("Failed to parse a number for the choice!\n");
+            goto start;
+        }
         // If the choice is an arithmetic operation we need to check if we had enough values inside the array
         if( choice == 5 || choice == 6 || choice == 7 || choice == 8) { 
             if(arr_lenght(&arr) == 0) {
