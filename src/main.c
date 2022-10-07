@@ -5,8 +5,8 @@
 #include "array.h"
 #include "complex.h"
 
-#define LOW_BOUND_DOUBLE -10.0
-#define UPPER_BOUND_DOUBLE 10.0
+#define LOWER_BOUND_DOUBLE -10.0 ///Lower bound of the double generation
+#define UPPER_BOUND_DOUBLE 10.0 ///Upper bound of the double generation
 
 int create_Complex_Array (array *array, int length);
 
@@ -19,7 +19,7 @@ int create_Complex_Array (array *array, int length);
 /// elements from it.                                          ///
 ///                                                            ///
 /// Notes:                                                     ///
-/// I decided to handle the failed on realloc as irrevocable.  ///
+/// I decided that the realloc failure is irrevocable.         ///
 /// So if realloc failed the memory will be free and the       ///
 /// program will exit.                                         ///
 ///                                                            ///
@@ -38,11 +38,10 @@ int main(int argc, char const *argv[])
     srand(time(NULL)); 
 
     do {
-start:
         Menu();
         if( ( choice = Choice() ) == -1) { // Check if the choice was sucessfull 
-            printf("Failed to parse a number for the choice!\n");
-            goto start;
+            printf("Failed to get a number from the choice input!\n");
+            continue;
         }
         // If the choice is an arithmetic operation we need to check if we had enough values inside the array
         if( choice == 5 || choice == 6 || choice == 7 || choice == 8) { 
@@ -53,9 +52,13 @@ start:
             }
             else {
                 printf("Write the index of the first element.\n");
-                while(!getInt(&index1) || ( index1 < 0 || index1 >= arr_lenght(&arr)));
+                while(!getInt(&index1) || ( index1 < 0 || index1 >= arr_lenght(&arr))) {
+                    printf("Index is out of the array size.\n");
+                }
                 printf("Write the index of the second element.\n");
-                while(!getInt(&index2) || ( index2 < 0 || index2 >= arr_lenght(&arr)));
+                while(!getInt(&index2) || ( index2 < 0 || index2 >= arr_lenght(&arr))) {
+                    printf("Index is out of the array size.\n");
+                }
             }
         }
  
@@ -77,8 +80,10 @@ start:
             break;
         case 2: ///Insert inside the array at a given position
             new_Complex = write_Complex();
-            printf("Write index to insert the new complex number.\n");
-            while(!getInt(&position));
+            printf("Write index to insert the new complex number : ");
+            while(!getInt(&position)) {
+                printf("Index is out of the array size.\n");
+            }
             if(!insert_into_arr(&arr, new_Complex, position)) {
                 printf("Failed to insert new complex into the array.\n");
                 empty_arr(&arr);
@@ -86,8 +91,10 @@ start:
             }
             break;
         case 3: ///Delete inside the array at a given position
-            printf("Write index to delete the complex number.\n");
-            while(!getInt(&position));
+            printf("Write index to delete the complex number : ");
+            while(!getInt(&position)) {
+                printf("Index is out of the array size.\n");
+            }
             if(!delete_into_arr(&arr, position)) {
                 printf("Failed to delete complex from the array.\n");
                 empty_arr(&arr);
@@ -135,8 +142,8 @@ int create_Complex_Array (array *array, int length) {
     for(int i=0; i<length; i++)
     {
         
-        set_realPart_Complex(&temp, random_Double(LOW_BOUND_DOUBLE, UPPER_BOUND_DOUBLE));
-        set_imaginaryPart_Complex(&temp, random_Double(LOW_BOUND_DOUBLE, UPPER_BOUND_DOUBLE));
+        set_realPart_Complex(&temp, random_Double(LOWER_BOUND_DOUBLE, UPPER_BOUND_DOUBLE));
+        set_imaginaryPart_Complex(&temp, random_Double(LOWER_BOUND_DOUBLE, UPPER_BOUND_DOUBLE));
         if(!insert_into_arr(array, temp, i )) {
             printf("Failed to insert into array !\n");
             return EXIT_FAILURE;

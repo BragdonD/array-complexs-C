@@ -80,7 +80,7 @@ void Menu() {
 }
 
 /// @brief Function to retrieve the choice made by user inside the menu
-/// @return the user's choice
+/// @return -1 on error
 int Choice() {
     int choice = 0;
 
